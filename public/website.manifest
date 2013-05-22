@@ -5,7 +5,14 @@ css/bootstrap-responsive.min.css
 css/main.css
 
 img/glyphicons-halflings.png
+img/html5_logo.png
+img/qr.png
 
 index.html
 input.html
 photo.html
+api.html
+cache.html
+online.html
+intent.html
+orient.html
