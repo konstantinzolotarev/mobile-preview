@@ -1,0 +1,36 @@
+<% include header %>
+<div class="span12 well well- text-center">
+    <a href="/">
+        <i class="icon-arrow-left"></i>&nbsp;Back
+    </a>
+</div>
+<div class="row-fluid">
+<div class="span4 space text-center">
+    <img id="photo" />
+</div>
+<div class="span4 space  text-center">
+    <input type="file" class="span12" capture="camera" accepts="image/*" id="cam" />
+</div>
+<div class="span4 space  text-center">
+    <input type="file" class="span12" capture="" accepts="image/*" id="cam2" />
+</div>
+</div>
+<script type="text/javascript">
+    var cam = document.getElementById('cam');
+    cam.onchange = function(event) {
+        if (event.target.files.length == 1 &&
+                event.target.files[0].type.indexOf("image/") == 0) {
+            document.getElementById('photo').src = URL.createObjectURL(event.target.files[0]);
+        }
+    }
+
+    var cam2 = document.getElementById('cam2');
+    cam2.onchange = function(event) {
+        if (event.target.files.length == 1 &&
+                event.target.files[0].type.indexOf("image/") == 0) {
+            document.getElementById('photo').src = URL.createObjectURL(event.target.files[0]);
+        }
+    }
+</script>
+
+<% include footer %>

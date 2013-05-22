@@ -1,0 +1,46 @@
+<% include header %>
+<div class="span12 well well- text-center">
+<a href="/">
+    <i class="icon-arrow-left"></i>&nbsp;Back
+</a>
+</div>
+<div class="row-fluid">
+<div class="span12 space text-center">
+    <div class="alert alert-success" id="online" style="display: none;">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Урааааа!</strong> Мы в сети !
+    </div>
+    <div class="alert alert-error" id="offline" style="display: none;">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Ой!</strong> Мы не в сети !
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+if (navigator.onLine) {
+    showOnline(true);
+    console.log('ONLINE!');
+} else {
+    showOnline(false);
+    console.log('Connection flaky');
+}
+window.addEventListener('online', function(e) {
+    showOnline(true);
+}, false);
+
+window.addEventListener('offline', function(e) {
+    showOnline(false);
+}, false);
+
+function showOnline(online) {
+    if (online) {
+        document.getElementById('online').style.display = 'block';
+        document.getElementById('offline').style.display = 'none';
+    } else {
+        document.getElementById('online').style.display = 'none';
+        document.getElementById('offline').style.display = 'block';
+    }
+}
+</script>
+
+<% include footer %>

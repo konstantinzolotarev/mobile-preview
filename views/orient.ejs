@@ -1,0 +1,65 @@
+<% include header %>
+<div class="span12 well well- text-center">
+<a href="/">
+    <i class="icon-arrow-left"></i>&nbsp;Back
+</a>
+</div>
+<div class="row-fluid">
+<div class="span12 space  text-center">
+    <div class="container" style="-webkit-perspective: 300; perspective: 300;">
+        <img src="/img/html5_logo.png" id="imgLogo" class="logo">
+    </div>
+</div>
+</div>
+<script>
+function deviceOrientationHandler(tiltLR, tiltFB, dir, motUD) {
+    document.getElementById("imgLogo").style.webkitTransform = "rotate(" +
+            tiltLR + "deg) rotate3d(1,0,0, " + (tiltFB * -1) + "deg)";
+    document.getElementById("imgLogo").style.MozTransform = "rotate(" + tiltLR + "deg)";
+    document.getElementById("imgLogo").style.transform = "rotate(" + tiltLR +
+            "deg) rotate3d(1,0,0, " + (tiltFB * -1) + "deg)";
+}
+
+if (window.DeviceOrientationEvent) {
+    // Listen for the deviceorientation event and handle the raw data
+    window.addEventListener('deviceorientation', function(eventData) {
+        // gamma is the left-to-right tilt in degrees, where right is positive
+        var tiltLR = eventData.gamma;
+
+        // beta is the front-to-back tilt in degrees, where front is positive
+        var tiltFB = eventData.beta;
+
+        // alpha is the compass direction the device is facing in degrees
+        var dir = eventData.alpha
+
+        // deviceorientation does not provide this data
+        var motUD = null;
+
+        // call our orientation event handler
+        deviceOrientationHandler(tiltLR, tiltFB, dir, motUD);
+    }, false);
+} else if (window.OrientationEvent) {
+
+    window.addEventListener('MozOrientation', function(eventData) {
+        // x is the left-to-right tilt from -1 to +1, so we need to convert to degrees
+        var tiltLR = eventData.x * 90;
+
+        // y is the front-to-back tilt from -1 to +1, so we need to convert to degrees
+        // We also need to invert the value so tilting the device towards us (forward)
+        // results in a positive value.
+        var tiltFB = eventData.y * -90;
+
+        // MozOrientation does not provide this data
+        var dir = null;
+
+        // z is the vertical acceleration of the device
+        var motUD = eventData.z;
+
+        // call our orientation event handler
+        deviceOrientationHandler(tiltLR, tiltFB, dir, motUD);
+    }, false);
+} else {
+    alert("Not supported on your device or browser.");
+}
+</script>
+<% include footer %>

@@ -1,0 +1,42 @@
+<% include header %>
+
+<div class="row-fluid">
+    <div class="span4 well well-small">
+        <a href="/orient.html">Положение телефона</a>
+    </div>
+    <div class="span4 well well-small">
+          <a href="/api.html">
+              Мое Местонахождение
+          </a>
+    </div>
+    <div class="span4 well well-small">
+        <a href="/photo.html">
+            Загрузка фото
+        </a>
+    </div>
+    <div class="span4 well well-small">
+        <a href="/input.html">
+            Поля ввода данных
+        </a>
+    </div>
+    <div class="span4 well well-small">
+        <a href="/online.html">
+            В сети/Не в сети
+        </a>
+    </div>
+    <div class="span4 well well-small">
+        <a href="/intent.html">
+            Страааашный INTENT !
+        </a>
+    </div>
+</div>
+<script type="text/javascript">
+document.getElementById('clearCache').onclick = function(event) {
+    if (!window.applicationCache) {
+        return;
+    }
+    var appCache = window.applicationCache;
+    appCache.swapCache();
+};
+</script>
+<% include footer %>
